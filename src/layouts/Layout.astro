@@ -1,0 +1,62 @@
+---
+import '../styles/global.css'; // <-- ADD THIS LINE to bridge the styles!
+
+interface Props {
+	title: string;
+	description?: string;
+}
+
+const { title, description = "Systems Architect & SRE Portfolio" } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" class="bg-zinc-950 text-zinc-100 scroll-smooth">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+	</head>
+	<body class="font-sans antialiased min-h-screen flex flex-col selection:bg-zinc-800 selection:text-white">
+		<header class="border-b border-zinc-900 sticky top-0 bg-zinc-950/80 backdrop-blur-md z-50">
+			<div class="max-w-4xl mx-auto px-4 py-4 flex justify-between items-center">
+				<a href="/" class="font-mono font-bold tracking-tight text-zinc-200 hover:text-white transition">
+					kgosi@infra:~$
+				</a>
+				<nav class="flex gap-6 text-sm font-medium text-zinc-400">
+					<a href="#projects" class="hover:text-zinc-100 transition">Case Studies</a>
+					<a href="#about" class="hover:text-zinc-100 transition">Infrastructure</a>
+					<a href="mailto:work@kgosi.co.za" class="hover:text-zinc-100 transition">Contact</a>
+				</nav>
+			</div>
+		</header>
+
+		<main class="flex-1 max-w-4xl w-full mx-auto px-4 py-12">
+			<slot />
+		</main>
+
+		<footer class="border-t border-zinc-900 py-8 bg-zinc-950">
+			<div class="max-w-4xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-zinc-500 font-mono">
+				<div>
+					&copy; {new Date().getFullYear()} Kgosi Letebele. All rights reserved.
+				</div>
+				<div>
+					Built with Astro + Tailwind  |  Sovereign Hosted
+				</div>
+			</div>
+		</footer>
+	</body>
+</html>
+
+<style is:global>
+	:root {
+		font-family: 'Plus Jakarta Sans', sans-serif;
+	}
+	pre, code {
+		font-family: 'JetBrains Mono', monospace;
+	}
+</style>
